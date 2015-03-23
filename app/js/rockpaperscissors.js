@@ -37,6 +37,14 @@ function getComputerMove(move) {
     // If a `move` has a value, your expression should evaluate to that value.
     // However, if `move` is not specified / is null, your expression should equal `randomPlay()`.
     move = Math.random;
+    if (move < 0.33){
+	move = "rock";
+}
+	else if (move < 0.66){
+	move = "paper";
+}	else{
+	move = "scissors";
+}
     return move;
     if (move = undefined||null){
         randomPlay();
@@ -45,11 +53,35 @@ function getComputerMove(move) {
 
 function getWinner(playerMove,computerMove) {
     var winner;
-    // Write code that will set winner to either 'player', 'computer', or 'tie' based on the values of playerMove and computerMove.
-    // Assume that the only values playerMove and computerMove can have are 'rock', 'paper', and 'scissors'.
-    // The rules of the game are that 'rock' beats 'scissors', 'scissors' beats 'paper', and 'paper' beats 'rock'.
-    /* YOUR CODE HERE */
+    if (computerMove =="rock"){
+        if (playerMove=="rock"){
+            winner = "tie";}
+        else if (playerMove=="scissors") {
+            winner = "computer";  }
+        else if (playerMove=="paper"){
+            winner = "player";
+        }
+    }
+     if (computerMove== "scissors"){
+        if (playerMove=="rock"){
+            winner = "player";}
+        else if (playerMove=="scissors") {
+            winner = "tie";  }
+        else if (playerMove=="paper"){
+            winner = "computer";
+        }
+    }
+     if (computerMove =="paper"){
+       if (playerMove=="rock"){
+            winner = "computer";}
+        else if (playerMove=="scissors") {
+            winner = "player";  }
+        else if (playerMove=="paper"){
+            winner = "tie";
+        }
+    }
     return winner;
+  
 }
 
 function playToFive() {
