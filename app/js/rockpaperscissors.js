@@ -2,94 +2,92 @@
 /*   Provided Code - Please Don't Edit   */
 ////////////////////////////////////////////////
 'use strict';
-
 function getInput() {
     console.log("Please choose either 'rock', 'paper', or 'scissors'.")
-    return prompt();
+    playerMove = prompt();
+    return playerMove;
 }
 function randomPlay() {
     var randomNumber = Math.random();
     if (randomNumber < 0.33) {
-        return "rock";
+        computerMove ='"rock"';
+        return computerMove;
     } else if (randomNumber < 0.66) {
-        return "paper";
+        computerMove = '"paper"';
+        return computerMove;
     } else {
-        return "scissors";
+        computerMove = '"scissors"';
+        return computerMove;
     }
+    
 }
 ////////////////////////////////////////////////
 /*           Write Your Code Below            */
 ////////////////////////////////////////////////
-
+var winner;
+var playerMove;
+var computerMove;
 function getPlayerMove(move) {
-    // Write an expression that operates on a variable called `move`
-    // If a `move` has a value, your expression should evaluate to that value.
-    // However, if `move` is not specified / is null, your expression should equal `getInput()`.
-    var move = prompt("Rock, Paper, Scissors, Shoot!");
-    return move;
-    if (move = undefined||null){
+    playerMove = move;
+    if (move === undefined||null){
         getInput();
-    }
+   }
+    return move;
 }
 
-function getComputerMove(move) {
-    // Write an expression that operates on a variable called `move`
-    // If a `move` has a value, your expression should evaluate to that value.
-    // However, if `move` is not specified / is null, your expression should equal `randomPlay()`.
-    move = Math.random;
-    if (move < 0.33){
-	move = "rock";
-}
-	else if (move < 0.66){
-	move = "paper";
-}	else{
-	move = "scissors";
-}
-    return move;
-    if (move = undefined||null){
+function getComputerMove(move){
+    computerMove = move;
+    if (move === undefined||null){
         randomPlay();
     }
+    return move;
 }
 
-function getWinner(playerMove,computerMove) {
-    var winner;
-    if (computerMove =="rock"){
-        if (playerMove=="rock"){
-            winner = "tie";}
-        else if (playerMove=="scissors") {
-            winner = "computer";  }
-        else if (playerMove=="paper"){
-            winner = "player";
-        }
+
+function getWinner(pMove,cMove) {
+    if (pMove === cMove){
+        winner = "tie"; }
+    else if ((pMove === '"rock"' && cMove === '"scissors"') || (pMove ==='"scissors"' && cMove === '"paper"') || (pMove ==='"paper"' && cMove === '"rock"')){
+        winner = "player";
     }
-     if (computerMove== "scissors"){
-        if (playerMove=="rock"){
-            winner = "player";}
-        else if (playerMove=="scissors") {
-            winner = "tie";  }
-        else if (playerMove=="paper"){
-            winner = "computer";
-        }
+    else if ((pMove === '"scissors"' && cMove === '"rock"') || (pMove ==='"rock"' && cMove === '"paper"') || (pMove ==='"paper"' && cMove === '"scissors"')){
+        winner = "computer";
     }
-     if (computerMove =="paper"){
-       if (playerMove=="rock"){
-            winner = "computer";}
-        else if (playerMove=="scissors") {
-            winner = "player";  }
-        else if (playerMove=="paper"){
-            winner = "tie";
-        }
+    else {
+        console.log("getWinner variables invalid")
     }
-    return winner;
-  
-}
+
+return winner;}
 
 function playToFive() {
-    console.log("Let's play Rock, Paper, Scissors");
     var playerWins = 0;
     var computerWins = 0;
-    // Write code that plays 'Rock, Paper, Scissors' until either the player or the computer has won five times.
-    /* YOUR CODE HERE */
-    return [playerWins, computerWins];
-}
+    console.log ("Let's play Rock, Paper, Scissors!");
+    while ((playerWins || computerWins)<5) {
+    getPlayerMove();
+    console.log("You choose "+playerMove);
+    getComputerMove();
+    console.log("Computer chose " +computerMove);
+    winner = null;
+    getWinner(playerMove, computerMove);
+    console.log("The Winner is "+ winner + "!");
+        if (winner === "player") {
+         playerWins+=1; }
+        else if (winner === "computer") {
+         computerWins+=1;}
+        else if (winner === "tie") {
+        console.log("Computer and Player both chose "+playerMove+ ", it's a tie!")}
+    console.log(playerWins, computerWins)
+    if (playerWins === 5){
+	  console.log("Congratulations! You win!")
+      return [playerWins, computerWins]
+    }
+    else if (computerWins ===5) {
+	  console.log("Computer wins! Oh no!")
+      return [playerWins, computerWins]
+    }
+    }
+    return [playerWins, computerWins];}
 
+////Hello GA! This is my original code for RPS which works, although I used some tricky variables that Briana (I think that was her name) said was not the intent of the exercise. The other file "rockpaperscissorsnoglobvar" contains my attempt to use functions and returns to playToFive. Unfortunately, changing the code caused my while loop to behave strangely, so I'm not sure what to do there. -Connor
+///
